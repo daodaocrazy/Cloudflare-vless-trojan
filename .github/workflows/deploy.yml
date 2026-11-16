@@ -1,10 +1,10 @@
-name: Deploy Vless Worker
+name: Deploy Vless Pages
 
 on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-vless-worker
+  group: deploy-vless-pages
   cancel-in-progress: true
 
 jobs:
@@ -23,9 +23,12 @@ jobs:
       - name: Install Wrangler
         run: npm install --no-save wrangler@4
 
-      - name: Deploy Worker
+      - name: Prepare Pages worker
+        run: cp Vless_workers_pages/_worker明.js /tmp/cfpage-worker.js && mkdir -p .pages-dist && cp /tmp/cfpage-worker.js .pages-dist/_worker.js
+
+      - name: Deploy Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy Vless_workers_pages/_worker明.js --name cfbridge --no-bundle --compatibility-date 2025-11-04 --var uuid:${{ secrets.VLESS_UUID }}
+          command: pages deploy .pages-dist --project-name=cfbridge-pages --branch=main
