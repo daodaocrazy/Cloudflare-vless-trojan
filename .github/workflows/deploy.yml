@@ -28,6 +28,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy Vless_workers_pages/_worker明.js --name cfbridge --no-bundle --compatibility-date 2025-11-04
-          vars: |
-            uuid=${{ secrets.VLESS_UUID }}
+          command: deploy Vless_workers_pages/_worker明.js --name cfbridge --no-bundle --compatibility-date 2025-11-04 --var uuid:${{ secrets.VLESS_UUID }}
