@@ -31,4 +31,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN_GMAIL }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID_GMAIL }}
-          command: pages deploy .pages-dist --project-name=cfbridge-pages --branch=main
+          command: pages deploy .pages-dist --project-name=cfbridge-pages-gmail --branch=main
